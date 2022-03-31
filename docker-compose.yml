@@ -1,0 +1,40 @@
+version: "3"
+services:
+  app_foods:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
+    volumes:
+      - .:/foods
+    ports:
+      - "3000:3000"
+    stdin_open: true
+    tty: true
+    networks:
+      - foods
+    depends_on:
+      - db
+      - redis
+
+  db:
+    image: postgres
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: 35462213
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
+    networks:
+      - foods
+    ports:
+      - '5432:5432'
+
+  redis:
+    image: redis
+    command: redis-server --requirepass 35462213  --appendonly yes
+    hostname: redis
+    networks:
+      - foods
+    ports:
+      - "6379:6379"
+networks:
+  foods:
+    driver: bridge
