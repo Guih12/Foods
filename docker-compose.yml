@@ -21,7 +21,7 @@ services:
     environment:
       POSTGRES_PASSWORD: 35462213
     volumes:
-      - ./postgres-data:/var/lib/postgresql/data
+      - ./tmp/db:/var/lib/postgresql/data
     networks:
       - foods
     ports:
