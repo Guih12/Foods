@@ -4,6 +4,12 @@ RSpec.describe Product, type: :model do
   describe "Validations" do
     subject(:product) { create(:product) }
 
+    context "when valid attributes" do
+      it "attributes valid" do
+        expect(product).to be_valid
+      end
+    end
+
     context "when invalid attributes" do
       it "is not valid attribute name" do
         product.name = nil
@@ -25,5 +31,6 @@ RSpec.describe Product, type: :model do
         expect(product).to_not be_valid
       end
     end
+
   end
 end
