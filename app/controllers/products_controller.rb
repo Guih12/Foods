@@ -1,10 +1,10 @@
 class ProductsController < ApplicationController
   def index
-    render json: {:ok => collection}, status: 200
+    render json: collection, status: 200
   end
 
   def show
-    render json: {:ok => 1}, status: 200
+    render json: product, status: 200
   end
 
   def create
@@ -12,7 +12,16 @@ class ProductsController < ApplicationController
     if !@new_product.errors.present?
       render json: {product: @new_product}, :status => 201
     else
-      render json: @new_product, :status => 403
+      render json: @new_product, :status => 422
+    end
+  end
+
+  def update
+    @update_product = Products::Update.new(product, product_attributes).persist
+    if !@update_product.errors.present?
+      render json: @update_product, :status => 201
+    else
+      render json: @update_product, :status => 422
     end
   end
 
@@ -20,6 +29,10 @@ class ProductsController < ApplicationController
 
   def collection
     @collection ||= Product.all
+  end
+
+  def product
+    @product = Product.find(params[:id])
   end
 
   def product_attributes

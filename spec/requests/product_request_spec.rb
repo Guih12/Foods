@@ -27,12 +27,32 @@ RSpec.describe "Products", type: :request do
             product: {
               name: "hamburguer",
               description: "humburguer legal",
-              type_product: "lanche",
+              type_product: :snack,
               price: 200
             }
           }
         end
         before(:each) { post "/products", params: product_attributes }
+
+        it "return status code 201" do
+          expect(response).to have_http_status(201)
+        end
+      end
+    end
+
+    describe "PUT /project/:id" do
+      context "when the request is valid" do
+        let(:product_attributes) do
+          {
+            product: {
+              name: "hamburguer",
+              description: "humburguer legal",
+              type_product: :snack,
+              price: 200
+            }
+          }
+        end
+        before(:each) { put "/products/#{products.first.id}", params: product_attributes }
 
         it "return status code 201" do
           expect(response).to have_http_status(201)

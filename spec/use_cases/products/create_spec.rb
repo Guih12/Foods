@@ -7,7 +7,7 @@ RSpec.describe Products::Create do
         {
           name: "hamburguer",
           description: "humburguer legal",
-          type_product: "lanche",
+          type_product: :snack,
           price: 20
         }
       end
