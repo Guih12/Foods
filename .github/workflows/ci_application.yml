@@ -48,5 +48,4 @@ jobs:
         run: |
           cp config/database.ci.yml config/database.yml
           bundle exec rails db:schema:load
-          rubocop --auto-correct
           bundle exec rspec --format=documentation
