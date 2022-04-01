@@ -15,8 +15,8 @@ module Products
     def create_product
       product = ::Product.new(product_attributes)
       return product if product.save
+
       product.errors
     end
-
   end
 end

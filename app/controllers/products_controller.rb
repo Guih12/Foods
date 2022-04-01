@@ -10,18 +10,18 @@ class ProductsController < ApplicationController
   def create
     @new_product = Products::Create.new(product_attributes).persist
     if !@new_product.errors.present?
-      render json: {product: @new_product}, :status => 201
+      render json: { product: @new_product }, status: 201
     else
-      render json: @new_product, :status => 422
+      render json: @new_product, status: 422
     end
   end
 
   def update
     @update_product = Products::Update.new(product, product_attributes).persist
     if !@update_product.errors.present?
-      render json: @update_product, :status => 201
+      render json: @update_product, status: 201
     else
-      render json: @update_product, :status => 422
+      render json: @update_product, status: 422
     end
   end
 
@@ -38,5 +38,4 @@ class ProductsController < ApplicationController
   def product_attributes
     params.require(:product).permit(:name, :description, :type_product, :price)
   end
-
 end

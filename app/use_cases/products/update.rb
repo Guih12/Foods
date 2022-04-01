@@ -7,6 +7,7 @@ module Products
 
     def persist
       return product if product.update(@product_attributes)
+
       product.errors
     end
 
