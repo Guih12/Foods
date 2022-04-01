@@ -8,8 +8,8 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @new_product = Products::Create.new(product_attributes)
-    if @new_product.persist
+    @new_product = Products::Create.new(product_attributes).persist
+    if !@new_product.errors.present?
       render json: {product: @new_product}, :status => 201
     else
       render json: @new_product, :status => 403
