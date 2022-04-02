@@ -2,7 +2,7 @@ class ProductsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    render json: collection, status: 200
+    render json: ProductSerializer.new(collection).serialized_json, status: 200
   end
 
   def show
@@ -12,7 +12,7 @@ class ProductsController < ApplicationController
   def create
     @new_product = Products::Create.new(product_attributes).persist
     if !@new_product.errors.present?
-      render json: { product: @new_product }, status: 201
+      render json: ProductSerializer.new(collection).serialized_json, status: 201
     else
       render json: @new_product, status: 422
     end
@@ -21,7 +21,7 @@ class ProductsController < ApplicationController
   def update
     @update_product = Products::Update.new(product, product_attributes).persist
     if !@update_product.errors.present?
-      render json: @update_product, status: 201
+      render json: ProductSerializer.new(collection).serialized_json, status: 201
     else
       render json: @update_product, status: 422
     end
