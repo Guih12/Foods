@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Combo, type: :model do
-  describe "Validations" do
+  describe 'Validations' do
     context 'when valid attributes' do
       let(:combo) { create(:combo) }
       it 'como is valid' do

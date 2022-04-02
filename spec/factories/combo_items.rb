@@ -4,7 +4,6 @@ FactoryBot.define do
     product { create(:product) }
   end
 
-
   factory :combo_invalid, parent: :combo_item do
     combo { nil }
     product { nil }
