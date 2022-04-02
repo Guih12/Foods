@@ -12,10 +12,10 @@ class UsersController < ApplicationController
   private
 
   def user
-    Users.find(params[:id])
+    User.find(params[:id])
   end
 
   def collection
-    @collection ||= Users.all
+    @collection ||= User.all
   end
 end
