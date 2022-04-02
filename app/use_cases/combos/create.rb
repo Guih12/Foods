@@ -15,6 +15,8 @@ module Combos
     def create_combo
       combo = ::Combo.new(combo_attributes)
       return combo if combo.save
+
+      combo.errors
     end
   end
 end
