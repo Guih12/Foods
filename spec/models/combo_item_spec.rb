@@ -1,5 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe ComboItem, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  describe "Validations" do
+    context "when valid attributes" do
+      let(:combo_item) { create(:combo_item) }
+      it 'valid combo_item' do
+        expect(combo_item).to be_valid
+      end
+    end
+  end
 end
