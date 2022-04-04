@@ -10,9 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_220_401_140_835) do
+ActiveRecord::Schema.define(version: 20_220_402_132_037) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
+
+  create_table 'combo_items', force: :cascade do |t|
+    t.bigint 'combo_id', null: false
+    t.bigint 'product_id', null: false
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['combo_id'], name: 'index_combo_items_on_combo_id'
+    t.index ['product_id'], name: 'index_combo_items_on_product_id'
+  end
+
+  create_table 'combos', force: :cascade do |t|
+    t.string 'name'
+    t.string 'description'
+    t.float 'price'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+  end
 
   create_table 'products', force: :cascade do |t|
     t.string 'name'
@@ -47,4 +64,7 @@ ActiveRecord::Schema.define(version: 20_220_401_140_835) do
     t.index ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true
     t.index %w[uid provider], name: 'index_users_on_uid_and_provider', unique: true
   end
+
+  add_foreign_key 'combo_items', 'combos'
+  add_foreign_key 'combo_items', 'products'
 end
