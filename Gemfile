@@ -36,6 +36,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'rspec-rails', '~> 5.0.0'
   gem 'rubocop', '~> 1.26', require: false
+  gem 'database_cleaner-active_record'
 end
 
 group :development do
