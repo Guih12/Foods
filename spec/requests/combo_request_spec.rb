@@ -40,6 +40,25 @@ RSpec.describe 'Combos', type: :request do
         expect(response).to have_http_status(201)
       end
     end
+
+    describe 'PUT /combos:id' do
+      let(:params_attributes) do
+        {
+          "combo": {
+            "name": combo.name,
+            "description": combo.description,
+            "price": combo.price,
+            "combo_items_attributes": [{ "product_id": product.id }]
+          }
+        }
+      end
+
+      before(:each) { put "/combos/#{combo.id}", params: params_attributes, headers: auth_headers }
+
+      it 'return status code 201' do
+        expect(response).to have_http_status(201)
+      end
+    end
   end
 
   context 'when user is not logged' do
@@ -73,6 +92,25 @@ RSpec.describe 'Combos', type: :request do
       before(:each) { post '/combos', params: params_attributes }
 
       it 'return status code 401' do
+        expect(response).to have_http_status(401)
+      end
+    end
+
+    describe 'PUT /combos:id' do
+      let(:params_attributes) do
+        {
+          "combo": {
+            "name": combo.name,
+            "description": combo.description,
+            "price": combo.price,
+            "combo_items_attributes": [{ "product_id": product.id }]
+          }
+        }
+      end
+
+      before(:each) { put "/combos/#{combo.id}", params: params_attributes }
+
+      it 'return status code 201' do
         expect(response).to have_http_status(401)
       end
     end
