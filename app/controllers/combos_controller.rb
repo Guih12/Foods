@@ -17,10 +17,22 @@ class CombosController < ApplicationController
     end
   end
 
+  def update
+    if !update_combo.errors.present?
+      render json: ComboSerializer.new(update_combo).serialized_json: status: 201
+    else
+      render json: update_combo, status: 422
+    end
+  end
+
   private
 
   def create_combo
     @create_combo = Combos::Create.new(combos_attributes).persist
+  end
+
+  def update_combo
+    @update_combo = Combos::Update.new(combo, combos_attributes).persist
   end
 
   def collection
