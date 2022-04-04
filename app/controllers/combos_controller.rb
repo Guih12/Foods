@@ -19,7 +19,7 @@ class CombosController < ApplicationController
 
   def update
     if !update_combo.errors.present?
-      render json: ComboSerializer.new(update_combo).serialized_json: status: 201
+      render json: ComboSerializer.new(update_combo).serialized_json, status: 201
     else
       render json: update_combo, status: 422
     end

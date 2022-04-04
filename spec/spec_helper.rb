@@ -95,7 +95,7 @@ RSpec.configure do |config|
   #   Kernel.srand config.seed
 
   config.before(:suite) do
-    STDOUT.puts "Foods || clean database"
+    STDOUT.puts 'Foods || clean database'
     DatabaseCleaner.strategy = :transaction
     DatabaseCleaner.clean_with(:truncation)
   end

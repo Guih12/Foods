@@ -1,12 +1,11 @@
 require 'rails_helper'
 
-
 RSpec.describe ComboSerializer do
   let(:combo) { create(:combo) }
   let(:product) { create(:product) }
 
   before do
-    combo.combo_items_attributes = [{product_id: product.id}]
+    combo.combo_items_attributes = [{ product_id: product.id }]
     combo.save
   end
 
@@ -42,5 +41,4 @@ RSpec.describe ComboSerializer do
       expect(subject[:data][:attributes][:products].first[:name]).to be_present
     end
   end
-
 end
