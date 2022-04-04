@@ -1,5 +1,5 @@
 class CombosController < ApplicationController
-  #before_action :authenticate_user!
+  before_action :authenticate_user!
 
   def index
     render json: ComboSerializer.new(collection).serialized_json, status: 200
