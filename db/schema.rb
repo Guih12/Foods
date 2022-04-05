@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_04_05_104259) do
+ActiveRecord::Schema.define(version: 2022_04_05_115552) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,24 @@ ActiveRecord::Schema.define(version: 2022_04_05_104259) do
     t.float "price"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "place_order_combo_items", force: :cascade do |t|
+    t.bigint "place_order_id", null: false
+    t.bigint "combo_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["combo_id"], name: "index_place_order_combo_items_on_combo_id"
+    t.index ["place_order_id"], name: "index_place_order_combo_items_on_place_order_id"
+  end
+
+  create_table "place_order_product_items", force: :cascade do |t|
+    t.bigint "place_order_id", null: false
+    t.bigint "product_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["place_order_id"], name: "index_place_order_product_items_on_place_order_id"
+    t.index ["product_id"], name: "index_place_order_product_items_on_product_id"
   end
 
   create_table "place_orders", force: :cascade do |t|
@@ -79,4 +97,8 @@ ActiveRecord::Schema.define(version: 2022_04_05_104259) do
 
   add_foreign_key "combo_items", "combos"
   add_foreign_key "combo_items", "products"
+  add_foreign_key "place_order_combo_items", "combos"
+  add_foreign_key "place_order_combo_items", "place_orders"
+  add_foreign_key "place_order_product_items", "place_orders"
+  add_foreign_key "place_order_product_items", "products"
 end
