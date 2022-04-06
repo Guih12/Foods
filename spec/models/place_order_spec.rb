@@ -9,7 +9,7 @@ RSpec.describe PlaceOrder, type: :model do
         expect(place_order).to be_valid
       end
     end
-    
+
     context 'when invalid attributes' do
       let(:place_order) { create(:place_order) }
       it 'is not valid attribute nome user' do

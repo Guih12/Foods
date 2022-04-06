@@ -5,12 +5,13 @@ module Combos
     end
 
     def search
-      return ::Combo.where(Combo.arel_table[:name].matches("#{params}")) unless params.blank?
+      return ::Combo.where(Combo.arel_table[:name].matches(params.to_s)) unless params.blank?
 
       []
     end
 
     private
+
     attr_reader :params
   end
 end

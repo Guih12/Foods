@@ -1,13 +1,12 @@
 require 'rails_helper'
 
-
 RSpec.describe Combos::SearchCombo do
   subject { described_class.new(combo.name).search }
   let(:combo) { create(:combo) }
 
   describe '.search' do
     context 'when valid params search' do
-      it "return combos" do
+      it 'return combos' do
         expect(subject).to_not be_empty
       end
     end

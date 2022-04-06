@@ -10,7 +10,6 @@ module PlaceOrders
       five: 0.05
     }
 
-
     def calculate_discount
       return discount_twenteen_percent if verification_combo_and_lanche
       return discount_teen_percent if verification_combo
@@ -18,19 +17,17 @@ module PlaceOrders
       discount_five_percent if verification_lanche
     end
 
-
     def verification_combo_and_lanche
       verification_combo && verification_lanche
     end
 
     def verification_combo
-      place_order.combos.count >= 2 ? true : false
+      place_order.combos.count >= 2
     end
 
     def verification_lanche
-      place_order.products.count >= 2 ? true : false
+      place_order.products.count >= 2
     end
-
 
     private
 
@@ -47,6 +44,5 @@ module PlaceOrders
     def discount_five_percent
       PERCENTS[:five]
     end
-
   end
 end
