@@ -14,8 +14,8 @@ module PlaceOrders
     def calculate_discount
       return discount_twenteen_percent if verification_combo_and_lanche
       return discount_teen_percent if verification_combo
-      return discount_five_percent if verification_lanche
 
+      discount_five_percent if verification_lanche
     end
 
 
