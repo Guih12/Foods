@@ -3,6 +3,6 @@ FactoryBot.define do
     name { 'Lanche legal' }
     description { 'Um lanche muito bom' }
     type_product { :snack }
-    price { 10 }
+    price { 2 }
   end
 end
