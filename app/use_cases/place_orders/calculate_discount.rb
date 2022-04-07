@@ -1,18 +1,18 @@
 module PlaceOrders
-  class PlaceOrderCalculateDiscount
+  class CalculateDiscount
     def initialize(place_order)
       @place_order = place_order
     end
 
     PERCENTS = {
-      twenteen: 0.17,
-      teen: 0.10,
+      seventeen: 0.17,
+      ten: 0.10,
       five: 0.05
     }
 
     def calculate_discount
-      return discount_twenteen_percent if verification_combo_and_lanche
-      return discount_teen_percent if verification_combo
+      return discount_seventeen_percent if verification_combo_and_lanche
+      return discount_ten_percent if verification_combo
 
       discount_five_percent if verification_lanche
     end
@@ -33,12 +33,12 @@ module PlaceOrders
 
     attr_reader :place_order
 
-    def discount_twenteen_percent
-      PERCENTS[:twenteen]
+    def discount_seventeen_percent
+      PERCENTS[:seventeen]
     end
 
-    def discount_teen_percent
-      PERCENTS[:teen]
+    def discount_ten_percent
+      PERCENTS[:ten]
     end
 
     def discount_five_percent
