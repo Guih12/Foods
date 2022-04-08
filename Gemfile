@@ -29,6 +29,8 @@ gem 'base32-crockford'
 gem 'devise'
 gem 'devise_token_auth'
 gem 'fast_jsonapi'
+gem 'has_scope'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
