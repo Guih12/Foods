@@ -123,5 +123,11 @@ RSpec.describe PlaceOrders::CalculateDiscount do
         expect(place_order_calculate_discount.calculate_discount).to eq 0.05
       end
     end
+
+    context 'when contains one lanche or combo' do
+      it 'return 0% of discount' do
+        expect(place_order_calculate_discount.calculate_discount).to eq 0
+      end
+    end
   end
 end
