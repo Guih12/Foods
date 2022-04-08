@@ -1,14 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe PlaceOrders::CalculatePrice do
-
   let(:place_order) { create(:place_order) }
   let(:product) { create(:product) }
   let(:product_two) { create(:product) }
 
   let(:combo) { create(:combo) }
   let(:combo_two) { create(:combo) }
-
 
   describe '.calculate_total' do
     let(:calculate_price) { PlaceOrders::CalculatePrice.new(place_order) }

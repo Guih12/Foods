@@ -1,15 +1,12 @@
 require 'rails_helper'
 
-
 RSpec.describe PlaceOrders::UpdatePriceAfterCreate do
-
   let(:place_order) { create(:place_order) }
   let(:product) { create(:product) }
   let(:product_two) { create(:product) }
 
   let(:combo) { create(:combo) }
   let(:combo_two) { create(:combo) }
-
 
   describe '.update_price' do
     context 'when valid place order' do

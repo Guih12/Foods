@@ -17,7 +17,7 @@ RSpec.describe PlaceOrders::Create do
         "cpf_user": place_order.cpf_user,
         "place_order_combo_items_attributes": [
           {
-            combo_id: combo.id,
+            combo_id: combo.id
           },
           {
             combo_id: combo_two.id
@@ -41,7 +41,6 @@ RSpec.describe PlaceOrders::Create do
     end
 
     context 'when params invalid' do
-
       let(:place_order_create) { PlaceOrders::Create.new(params).persist }
 
       let(:params) do

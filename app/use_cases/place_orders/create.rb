@@ -17,7 +17,6 @@ module PlaceOrders
 
     attr_reader :place_order_attributes
 
-
     def find_place_order(place_order)
       ::PlaceOrder.find(place_order.id)
     end

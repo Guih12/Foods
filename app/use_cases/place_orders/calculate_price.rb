@@ -4,7 +4,6 @@ module PlaceOrders
       @place_order = place_order
     end
 
-
     def calculate_total
       (total_combo + total_products)
     end
