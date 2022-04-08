@@ -7,14 +7,17 @@ module PlaceOrders
     PERCENTS = {
       seventeen: 0.17,
       ten: 0.10,
-      five: 0.05
+      five: 0.05,
+      zero: 0.00
     }
 
     def calculate_discount
       return discount_seventeen_percent if verification_combo_and_lanche
       return discount_ten_percent if verification_combo
 
-      discount_five_percent if verification_lanche
+      return discount_five_percent if verification_lanche
+
+      discount_zero_percent
     end
 
     def verification_combo_and_lanche
@@ -43,6 +46,10 @@ module PlaceOrders
 
     def discount_five_percent
       PERCENTS[:five]
+    end
+
+    def discount_zero_percent
+      PERCENTS[:zero]
     end
   end
 end
