@@ -3,7 +3,7 @@ FactoryBot.define do
     name { 'George' }
     lastname { 'Borsato' }
     age { 22 }
-    email { 'george.lemos@gmail.com' }
+    email { 'lemos@gmail.com' }
     password { '35462213' }
   end
 end
