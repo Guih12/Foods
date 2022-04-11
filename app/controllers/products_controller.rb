@@ -31,11 +31,15 @@ class ProductsController < ApplicationController
   private
 
   def collection
-    @collection ||= apply_scopes(::Product.where(restaurant_id: current_user.restaurant.id))
+    @collection ||= apply_scopes(products)
+  end
+
+  def products
+    @products ||= ::Product.where(restaurant_id: current_user.restaurant.id)
   end
 
   def product
-    @product = Product.find(params[:id])
+    @product ||= Product.find(params[:id])
   end
 
   def attributes
