@@ -21,7 +21,7 @@ class RestaurantsController < ApplicationController
   private
 
   def collection
-    @collection ||= apply_scopes(::Restaurant).where(user_id: 2)
+    @collection ||= apply_scopes(::Restaurant).where(user_id: current_user.id)
   end
 
   def restaurant
