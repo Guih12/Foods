@@ -6,6 +6,12 @@ RSpec.describe 'Products', type: :request do
   let(:auth_headers) { user.create_new_auth_token }
   let(:restaurant) { create(:restaurant) }
 
+   before do
+    user.restaurant = restaurant
+    user.save
+  end
+
+
   context 'when user is logged' do
     describe 'GET /products' do
       before(:each) { get '/products', headers: auth_headers }
@@ -63,7 +69,18 @@ RSpec.describe 'Products', type: :request do
         end
       end
     end
-  end
+
+    describe 'GET /product?q' do
+      let(:products_list) { create(:product, name: "product") }
+      before(:each) { get "/products?q=#{products_list.name}", headers: auth_headers }
+
+
+      it 'return status code 200' do
+        expect(response).to have_http_status(200)
+      end
+
+    end
+  end 
 
   context 'when user is not logged' do
     describe 'GET /products' do
