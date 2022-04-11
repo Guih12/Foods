@@ -5,6 +5,12 @@ RSpec.describe 'Combos', type: :request do
   let(:combo) { create(:combo) }
   let(:product) { create(:product) }
   let(:auth_headers) { user.create_new_auth_token }
+  let(:restaurant) { create(:restaurant) }
+
+  before do
+    user.restaurant = restaurant
+    user.save
+  end
 
   context 'when user is logged' do
     describe 'GET /combos' do
@@ -29,6 +35,7 @@ RSpec.describe 'Combos', type: :request do
             "name": combo.name,
             "description": combo.description,
             "price": combo.price,
+            "restaurant_id": restaurant.id,
             "combo_items_attributes": [{ "product_id": product.id }]
           }
         }
