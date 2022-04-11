@@ -4,4 +4,6 @@ class Product < ApplicationRecord
   belongs_to :restaurant
 
   validates_presence_of :name, :description, :type_product, :price, presence: true
+
+  scope :q, -> (params) { where(Product.arel_table[:name].matches("%#{params}%"))}
 end
