@@ -72,13 +72,13 @@ RSpec.describe 'Products', type: :request do
 
     describe 'GET /product?q' do
       let(:products_list) { create(:product, name: "product") }
-      before(:each) { get "/products?q=#{products_list.first.name}", headers: auth_headers }
+      before(:each) { get "/products?q=#{products_list.name}", headers: auth_headers }
 
 
       it 'return status code 200' do
         expect(response).to have_http_status(200)
       end
-      
+
     end
   end 
 
