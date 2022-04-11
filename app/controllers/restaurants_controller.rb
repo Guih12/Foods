@@ -1,7 +1,6 @@
 class RestaurantsController < ApplicationController
   before_action :authenticate_user!
 
-
   def index
     render json: RestaurantSerializer.new(collection).serialized_json, status: 200
   end
@@ -9,7 +8,6 @@ class RestaurantsController < ApplicationController
   def show
     render json: RestaurantSerializer.new(restaurant).serialized_json, status: 200
   end
-
 
   def create
     restaurant = Restaurants::Create.new(restaurant_attributes).persist
@@ -20,11 +18,10 @@ class RestaurantsController < ApplicationController
     end
   end
 
-
   private
 
   def collection
-    @collection ||= ::Restaurant.all
+    @collection ||= apply_scopes(::Restaurant).where(user_id: 2)
   end
 
   def restaurant
@@ -34,5 +31,4 @@ class RestaurantsController < ApplicationController
   def restaurant_attributes
     params.require(:restaurant).permit(:name, :number_phone, :user_id)
   end
-
 end

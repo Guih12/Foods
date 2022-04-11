@@ -2,12 +2,12 @@ require 'rails_helper'
 
 RSpec.describe 'Restaurants', type: :request do
   let(:restaurant) { create(:restaurant) }
-  let(:user) { create(:user, email: "george@gmail.com") }
+  let(:user) { create(:user, email: 'george@gmail.com') }
   let(:auth_headers) { user.create_new_auth_token }
 
   context 'when user is logged' do
     describe 'GET /restaurants' do
-      before(:each) { get "/restaurants", headers: auth_headers }
+      before(:each) { get '/restaurants', headers: auth_headers }
 
       it 'return status code 200' do
         expect(response).to have_http_status(200)
@@ -22,11 +22,11 @@ RSpec.describe 'Restaurants', type: :request do
     end
 
     describe 'POST /restaurants' do
-      before(:each) { post "/restaurants", params: params, headers: auth_headers }
+      before(:each) { post '/restaurants', params: params, headers: auth_headers }
       context 'when valid params' do
         let(:params) do
           {
-            restaurant:{
+            restaurant: {
               name: restaurant.name,
               number_phone: restaurant.number_phone,
               user_id: user.id
@@ -41,7 +41,7 @@ RSpec.describe 'Restaurants', type: :request do
       context 'when invalid params' do
         let(:params) do
           {
-            restaurant:{
+            restaurant: {
               name: nil,
               number_phone: nil,
               user_id: user.id
@@ -55,14 +55,13 @@ RSpec.describe 'Restaurants', type: :request do
     end
 
     describe 'PUT /restaurants/:id' do
-      before(:each) { get "/restaurants" }
+      before(:each) { get '/restaurants' }
     end
   end
 
-
   context 'when user not logged' do
     describe 'GET /restaurants' do
-      before(:each) { get "/restaurants" }
+      before(:each) { get '/restaurants' }
 
       it 'return status code 401' do
         expect(response).to have_http_status(401)
@@ -70,21 +69,21 @@ RSpec.describe 'Restaurants', type: :request do
     end
 
     describe 'GET /restaurants/:id' do
-      before(:each) { get "/restaurants" }
+      before(:each) { get '/restaurants' }
       it 'return status code 401' do
         expect(response).to have_http_status(401)
       end
     end
 
     describe 'POST /restaurants' do
-      before(:each) { get "/restaurants" }
+      before(:each) { get '/restaurants' }
       it 'return status code 401' do
         expect(response).to have_http_status(401)
       end
     end
 
     describe 'PUT /restaurants/:id' do
-      before(:each) { get "/restaurants" }
+      before(:each) { get '/restaurants' }
       it 'return status code 401' do
         expect(response).to have_http_status(401)
       end

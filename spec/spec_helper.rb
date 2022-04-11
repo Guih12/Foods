@@ -17,7 +17,6 @@
 require 'database_cleaner/active_record'
 require 'simplecov'
 
-
 # then make the DatabaseCleaner.start and DatabaseCleaner.clean calls appropriately
 RSpec.configure do |config|
   # rspec-expectations config goes here. You can use an alternate

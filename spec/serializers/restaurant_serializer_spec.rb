@@ -4,8 +4,7 @@ RSpec.describe RestaurantSerializer do
   let(:restaurant) { create(:restaurant) }
 
   describe '.serializable hash' do
-    subject {described_class.new(restaurant).serializable_hash }
-
+    subject { described_class.new(restaurant).serializable_hash }
 
     it 'serializable id' do
       expect(subject[:data][:attributes][:id]).to eq restaurant.id
