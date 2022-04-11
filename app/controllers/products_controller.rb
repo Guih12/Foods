@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!
+  has_scope :q
 
   def index
     render json: ProductSerializer.new(collection).serialized_json, status: 200
@@ -10,7 +11,7 @@ class ProductsController < ApplicationController
   end
 
   def create
-    @new_product = Products::Create.new(product_attributes).persist
+    @new_product = Products::Create.new(attributes).persist
     if !@new_product.errors.present?
       render json: ProductSerializer.new(collection).serialized_json, status: 201
     else
@@ -30,14 +31,18 @@ class ProductsController < ApplicationController
   private
 
   def collection
-    @collection ||= Product.all
+    @collection ||= apply_scopes(::Product.where(restaurant_id: current_user.restaurant.id))
   end
 
   def product
     @product = Product.find(params[:id])
   end
 
+  def attributes
+    product_attributes.merge!(restaurant_id: current_user.restaurant.id)
+  end
+
   def product_attributes
-    params.require(:product).permit(:name, :description, :type_product, :price, :restaurant_id)
+    params.require(:product).permit(:name, :description, :type_product, :price)
   end
 end
