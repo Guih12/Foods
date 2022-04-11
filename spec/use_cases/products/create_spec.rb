@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe Products::Create do
   describe '.persist' do
     context 'when valid attributes' do
-
       let(:restaurant) { create(:restaurant) }
       let(:product_params) do
         {
