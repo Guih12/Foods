@@ -7,5 +7,7 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
 
+  has_one :restaurant
+
   validates_presence_of :name, :lastname, :age, :email, presence: true
 end
