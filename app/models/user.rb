@@ -9,5 +9,5 @@ class User < ActiveRecord::Base
 
   has_one :restaurant
 
-  # validates_presence_of :name, :lastname, :age, :email, presence: true
+  validates_presence_of :name, :lastname, :age, :email, presence: true
 end
