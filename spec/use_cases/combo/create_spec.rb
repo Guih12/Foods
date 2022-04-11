@@ -4,12 +4,14 @@ RSpec.describe Combos::Create do
   subject(:crate_combo) { Combos::Create.new(combo_attributes).persist }
   let(:product) { create(:product) }
   let(:combo) { create(:combo) }
+  let(:restaurant) { create(:restaurant) }
 
   let(:combo_attributes) do
     {
       "name": combo.name,
       "description": combo.description,
       "price": combo.price,
+      "restaurant_id": restaurant.id,
       "combo_items_attributes": [{ "product_id": product.id }]
     }
   end

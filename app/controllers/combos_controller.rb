@@ -28,7 +28,7 @@ class CombosController < ApplicationController
   private
 
   def create_combo
-    @create_combo = Combos::Create.new(combos_attributes).persist
+    @create_combo = Combos::Create.new(attributes).persist
   end
 
   def update_combo
@@ -41,6 +41,10 @@ class CombosController < ApplicationController
 
   def combo
     @combo ||= Combo.find(params[:id])
+  end
+
+  def attributes
+    combos_attributes.merge!(restaurant_id: current_user.restaurant.id)
   end
 
   def combos_attributes

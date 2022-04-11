@@ -3,5 +3,6 @@ FactoryBot.define do
     name { 'MyString' }
     description { 'Uma descricao' }
     price { 2 }
+    restaurant { create(:restaurant) }
   end
 end
