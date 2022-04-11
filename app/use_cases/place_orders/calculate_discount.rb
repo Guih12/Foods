@@ -29,12 +29,16 @@ module PlaceOrders
     end
 
     def verification_lanche
-      place_order.products.count >= 2
+      snack.count >= 2
     end
 
     private
 
     attr_reader :place_order
+
+    def snack
+      place_order.products.where(type_product: :snack)
+    end
 
     def discount_seventeen_percent
       PERCENTS[:seventeen]
