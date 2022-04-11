@@ -31,15 +31,16 @@ gem 'devise_token_auth'
 gem 'fast_jsonapi'
 gem 'has_scope'
 
-
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'database_cleaner-active_record'
   gem 'factory_bot_rails'
+  gem 'faker'
   gem 'pry-rails'
   gem 'rspec-rails', '~> 5.0.0'
   gem 'rubocop', '~> 1.26', require: false
+  gem 'simplecov', require: false
 end
 
 group :development do
