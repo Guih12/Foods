@@ -3,15 +3,18 @@ class ProductsController < ApplicationController
   has_scope :q
 
   def index
+    authorize collection
     render json: ProductSerializer.new(collection).serialized_json, status: 200
   end
 
   def show
+    authorize product
     render json: product, status: 200
   end
 
   def create
     @new_product = Products::Create.new(attributes).persist
+    authorize @new_product
     if !@new_product.errors.present?
       render json: ProductSerializer.new(collection).serialized_json, status: 201
     else
@@ -21,6 +24,7 @@ class ProductsController < ApplicationController
 
   def update
     @update_product = Products::Update.new(product, product_attributes).persist
+    authorize @update_product
     if !@update_product.errors.present?
       render json: ProductSerializer.new(collection).serialized_json, status: 201
     else

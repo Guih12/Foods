@@ -1,13 +1,18 @@
 # frozen_string_literal: true
 
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   include DeviseTokenAuth::Concerns::User
 
+  enum type_users: { "provider" => 0, "consumer" => 1 }
+
   has_one :restaurant
 
+
   validates_presence_of :name, :lastname, :age, :email, presence: true
+
+  def provider?
+    type_user == 0 ? true : false
+  end
 end
