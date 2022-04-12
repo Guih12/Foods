@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Combos', type: :request do
-  let(:user) { create(:user) }
+  let(:user) { create(:user, type_user: 0) }
   let(:combo) { create(:combo) }
   let(:product) { create(:product) }
   let(:auth_headers) { user.create_new_auth_token }

@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::API
   include DeviseTokenAuth::Concerns::SetUserByToken
+  include Pundit::Authorization
 
   before_action :configure_sign_up_params, if: :devise_controller?
 

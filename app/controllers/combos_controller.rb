@@ -2,14 +2,17 @@ class CombosController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    authorize collection
     render json: ComboSerializer.new(collection).serialized_json, status: 200
   end
 
   def show
+    authorize combo
     render json: ComboSerializer.new(combo).serialized_json, status: 200
   end
 
   def create
+    authorize create_combo
     if !create_combo.errors.present?
       render json: ComboSerializer.new(create_combo).serialized_json, status: 201
     else
@@ -18,6 +21,7 @@ class CombosController < ApplicationController
   end
 
   def update
+    authorize update_combo
     if !update_combo.errors.present?
       render json: ComboSerializer.new(update_combo).serialized_json, status: 201
     else
