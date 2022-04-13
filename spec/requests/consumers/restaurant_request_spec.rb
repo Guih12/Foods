@@ -18,19 +18,23 @@ RSpec.describe 'Consumer/restaurants' do
       it 'return status code 200' do
         expect(response).to have_http_status(200)
       end
+
+      it 'return one restaurant' do
+        expect(JSON.parse(response.body).count).to eq 1
+      end
     end
   end
 
   context 'when user is not logged' do
     describe 'GET /consumers/restaurants' do
-      before(:each) { get '/consumers/restaurants'}
+      before(:each) { get '/consumers/restaurants' }
       it 'return status code 401' do
         expect(response).to have_http_status(401)
       end
     end
 
     describe 'GET /consumers/restaurants/:id' do
-      before(:each) { get '/consumers/restaurants'}
+      before(:each) { get '/consumers/restaurants' }
       it 'return status code 401' do
         expect(response).to have_http_status(401)
       end
