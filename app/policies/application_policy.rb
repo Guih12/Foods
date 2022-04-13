@@ -13,6 +13,10 @@ class ApplicationPolicy
     user.provider?
   end
 
+  def consumer_permission?
+    user.consumer?
+  end
+
   class Scope
     def initialize(user, scope)
       @user = user
