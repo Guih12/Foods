@@ -5,4 +5,8 @@ Rails.application.routes.draw do
   resources :users
   resources :combos
   resources :restaurants
+
+  namespace :consumers do
+    resources :restaurants
+  end
 end
