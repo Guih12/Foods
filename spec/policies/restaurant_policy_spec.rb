@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Consumers::RestaurantPolicy do
+RSpec.describe RestaurantPolicy do
   let(:restaurant_policy) { described_class.new(user, restaurant) }
   let(:restaurant) { create(:restaurant) }
   let(:user) { create(:user, type_user: 1) }

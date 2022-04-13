@@ -1,8 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe 'Consumer/restaurants' do
-  let(:user) { create(:user) }
+  let(:user) { create(:user, type_user: 1) }
   let(:auth_headers) { user.create_new_auth_token }
+  let(:restaurant) { create(:restaurant) }
 
   context 'when user logged' do
     describe 'GET /consumers/restaurants' do
@@ -13,7 +14,7 @@ RSpec.describe 'Consumer/restaurants' do
     end
 
     describe 'GET /consumers/restaurants/:id' do
-      before(:each) { get '/consumers/restaurants/2', headers: auth_headers }
+      before(:each) { get "/consumers/restaurants/#{restaurant.id}", headers: auth_headers }
       it 'return status code 200' do
         expect(response).to have_http_status(200)
       end
