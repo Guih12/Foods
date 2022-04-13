@@ -15,4 +15,8 @@ class User < ActiveRecord::Base
   def provider?
     type_user == 0 ? true : false
   end
+  
+  def consumer?
+    !provider?
+  end
 end
