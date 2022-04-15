@@ -3,6 +3,9 @@ require 'rails_helper'
 RSpec.describe 'Consumer/PlaceOrders' do
   let(:user) { create(:user, type_user: 1) }
   let(:auth_headers) { user.create_new_auth_token }
+  let(:restaurant) { create(:restaurant) }
+  let(:product) { create(:product) }
+  let(:combo) { create(:combo) }
 
   context 'when user is logged' do
     describe 'POST /consumers/place_orders' do
@@ -12,9 +15,9 @@ RSpec.describe 'Consumer/PlaceOrders' do
         let(:params_attributes) do
           {
             place_order: {
-              name_user: 'george',
-              cpf_user: '00555',
-              date: Time.now
+              restaurant_id: restaurant.id,
+              place_order_combo_items_attributes: [ {combo_id: combo.id} ],
+              place_order_product_items_attributes: [ {product_id: product.id} ]
             }
           }
         end
@@ -27,9 +30,7 @@ RSpec.describe 'Consumer/PlaceOrders' do
         let(:params_attributes) do
           {
             place_order: {
-              name_user: '',
-              cpf_user: '',
-              date: Time.now
+              restaurant_id: nil
             }
           }
         end

@@ -1,11 +1,22 @@
 class PlaceOrder < ApplicationRecord
+  belongs_to :user
+  belongs_to :restaurant
+
   has_many :place_order_combo_items
   has_many :place_order_product_items
 
   has_many :combos, through: :place_order_combo_items
   has_many :products, through: :place_order_product_items
 
-  validates_presence_of :name_user, :cpf_user, presence: true
-
   accepts_nested_attributes_for :place_order_combo_items, :place_order_product_items
+
+  before_save :set_status, :set_date
+
+  def set_status
+    self.status = false if status.nil?
+  end
+
+  def set_date
+    self.data = Time.now if data.nil?
+  end
 end
