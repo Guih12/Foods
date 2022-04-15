@@ -11,6 +11,7 @@ class PlaceOrder < ApplicationRecord
   accepts_nested_attributes_for :place_order_combo_items, :place_order_product_items
 
   before_save :set_status, :set_date
+  after_save :set_code
 
   def set_status
     self.status = false if status.nil?
@@ -18,5 +19,9 @@ class PlaceOrder < ApplicationRecord
 
   def set_date
     self.data = Time.now if data.nil?
+  end
+
+  def set_code
+    self.code = Base32::Crockford.encode(self.id, :split => 5, :length => 5) if self.code.nil?
   end
 end
