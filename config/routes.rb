@@ -8,5 +8,6 @@ Rails.application.routes.draw do
 
   namespace :consumers do
     resources :restaurants
+    resources :place_orders
   end
 end
