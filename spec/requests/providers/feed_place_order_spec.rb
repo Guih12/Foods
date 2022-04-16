@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Providers::FeedPlaceOrdersController do
-  let(:user) { create(:user, type_user: 1) }
+  let(:user) { create(:user, type_user: 0) }
   let(:auth_headers) { user.create_new_auth_token }
   let(:place_order) { create(:place_order) }
   let(:restaurant) { create(:restaurant) }
