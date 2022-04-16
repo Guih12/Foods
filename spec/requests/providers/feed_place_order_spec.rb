@@ -1,11 +1,18 @@
 require 'rails_helper'
 
 RSpec.describe Providers::FeedPlaceOrdersController do
-  let(:user) { create(:user) }
+  let(:user) { create(:user, type_user: 1) }
   let(:auth_headers) { user.create_new_auth_token }
   let(:place_order) { create(:place_order) }
+  let(:restaurant) { create(:restaurant) }
 
   context 'when user is looged' do
+
+    before do
+      user.restaurant = restaurant
+      user.save
+    end
+
     describe 'GET /providers/feed_place_orders' do
       before(:each) { get '/providers/feed_place_orders', headers: auth_headers}
 
