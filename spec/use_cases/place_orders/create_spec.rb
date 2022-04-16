@@ -5,7 +5,8 @@ RSpec.describe PlaceOrders::Create do
     let(:place_order) { create(:place_order) }
     let(:product) { create(:product) }
     let(:product_two) { create(:product) }
-
+    let(:user) { create(:user) }
+    let(:restaurant) { create(:restaurant) }
     let(:combo) { create(:combo) }
     let(:combo_two) { create(:combo) }
 
@@ -13,8 +14,8 @@ RSpec.describe PlaceOrders::Create do
 
     let(:params) do
       {
-        "name_user": place_order.name_user,
-        "cpf_user": place_order.cpf_user,
+        "user_id": user.id,
+        "restaurant_id": restaurant.id,
         "place_order_combo_items_attributes": [
           {
             combo_id: combo.id
@@ -45,16 +46,14 @@ RSpec.describe PlaceOrders::Create do
 
       let(:params) do
         {
-          "name_user": nil,
-          "cpf_user": nil,
           "place_order_combo_items_attributes": [],
           "place_order_product_items_attributes": []
         }
       end
 
       it 'return message errors' do
-        expect(place_order_create.messages).to have_key(:name_user)
-        expect(place_order_create.messages).to have_key(:cpf_user)
+        expect(place_order_create.messages).to have_key(:user)
+        expect(place_order_create.messages).to have_key(:restaurant)
       end
     end
   end
