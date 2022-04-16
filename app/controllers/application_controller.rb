@@ -6,7 +6,7 @@ class ApplicationController < ActionController::API
 
 
   def provider?
-    render json: 'user not permitted', status: 401 unless current_user.provider?
+    render json: {message: 'user not permitted'}, status: 401 unless current_user.provider?
   end
 
   protected
