@@ -4,6 +4,11 @@ class ApplicationController < ActionController::API
 
   before_action :configure_sign_up_params, if: :devise_controller?
 
+
+  def provider?
+    render json: 'user not permitted', status: 401 unless current_user.provider?
+  end
+
   protected
 
   def configure_sign_up_params
