@@ -21,6 +21,7 @@ class PlaceOrder < ApplicationRecord
     self.data = Time.now if data.nil?
   end
 
+  #code
   def set_code
     self.code = Base32::Crockford.encode(self.id, :split => 5, :length => 5) if self.code.nil?
   end
