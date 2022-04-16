@@ -10,4 +10,8 @@ Rails.application.routes.draw do
     resources :restaurants
     resources :place_orders
   end
+
+  namespace :providers do
+    resources :feed_place_orders
+  end
 end
