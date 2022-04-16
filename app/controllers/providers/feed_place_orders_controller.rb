@@ -1,14 +1,14 @@
 module Providers
   class FeedPlaceOrdersController < ApplicationController
     before_action :authenticate_user!
-
+    before_action :provider?
 
     def index
-      render json: 'ok', status: 200
+      render json: collection, status: 200
     end
 
     def show
-      render json: 'ok', status: 200
+      render json: feed_place_order, status: 200
     end
 
 
