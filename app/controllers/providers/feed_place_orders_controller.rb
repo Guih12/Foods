@@ -4,11 +4,11 @@ module Providers
     before_action :provider?
 
     def index
-      render json: collection, status: 200
+      render json: PlaceOrderSerializer.new(collection).serialized_json, status: 200
     end
 
     def show
-      render json: feed_place_order, status: 200
+      render json: PlaceOrderSerializer.new(collection).serialized_json, status: 200
     end
 
 
