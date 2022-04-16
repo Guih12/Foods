@@ -10,6 +10,8 @@ class PlaceOrder < ApplicationRecord
 
   accepts_nested_attributes_for :place_order_combo_items, :place_order_product_items
 
+  scope :by_doing, -> { where(status: false) }
+
   before_save :set_status, :set_date
   after_save :set_code
 
