@@ -75,14 +75,11 @@ jobs:
           build-args:
             arg1=value1
             arg2=value2
-            
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.12.12
+      
+      - name: Deploy application
+        uses: akhileshns/heroku-deploy@v3.12.12
         with:
+          if: ${{ github.ref == 'refs/heads/develop' }}
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "foods-staging"
-          heroku_email: "georginhoborsato@gmail.com"
+          eroku_email: "georginhoborsato@gmail.com"
