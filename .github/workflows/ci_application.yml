@@ -79,7 +79,6 @@ jobs:
       - name: Deploy application
         uses: akhileshns/heroku-deploy@v3.12.12
         with:
-          if: ${{ github.ref == 'refs/heads/develop' }}
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
           heroku_app_name: "foods-staging"
           eroku_email: "georginhoborsato@gmail.com"
