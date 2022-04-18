@@ -75,10 +75,3 @@ jobs:
           build-args:
             arg1=value1
             arg2=value2
-      
-      - name: Deploy application
-        uses: akhileshns/heroku-deploy@v3.12.12
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "foods-staging"
-          eroku_email: "georginhoborsato@gmail.com"
