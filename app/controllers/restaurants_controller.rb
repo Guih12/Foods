@@ -10,7 +10,7 @@ class RestaurantsController < ApplicationController
   end
 
   def create
-    restaurant = Restaurants::Create.new(restaurant_attributes).persist
+    restaurant = Restaurant::Create.new(restaurant_attributes, ::Restaurant::Repository).persist
     if !restaurant.errors.present?
       render json: RestaurantSerializer.new(restaurant).serialized_json, status: 201
     else
@@ -21,11 +21,11 @@ class RestaurantsController < ApplicationController
   private
 
   def collection
-    @collection ||= apply_scopes(::Restaurant).where(user_id: current_user.id)
+    @collection ||= apply_scopes(::Restaurant::Record).where(user_id: current_user.id)
   end
 
   def restaurant
-    @restaurant ||= ::Restaurant.find(params[:id])
+    @restaurant ||= ::Restaurant::Record.find(params[:id])
   end
 
   def restaurant_attributes
