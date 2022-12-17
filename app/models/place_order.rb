@@ -1,6 +1,6 @@
 class PlaceOrder < ApplicationRecord
   belongs_to :user
-  belongs_to :restaurant
+  belongs_to :restaurant, class_name: "Restaurant::Record"
 
   has_many :place_order_combo_items
   has_many :place_order_product_items

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe Restaurants::Create do
-  subject { described_class.new(restaurant_attributes).persist }
+RSpec.describe Restaurant::Create do
+  subject { described_class.new(restaurant_attributes, ::Restaurant::Repository).persist }
 
   let(:restaurant) { create(:restaurant) }
 

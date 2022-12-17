@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
 
   enum type_users: { "provider" => 0, "consumer" => 1 }
 
-  has_one :restaurant
+  has_one :restaurant, class_name: "Restaurant::Record"
 
 
   validates_presence_of :name, :lastname, :age, :email, presence: true
