@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe Combos::Update do
-  subject { described_class.new(combo, **combo_attributes).persist }
+RSpec.describe Combo::Update do
+  subject { described_class.new(combo_id: combo.id, combo_attributes: combo_attributes, repository: Combo::Repository).persist }
   describe '.persist' do
     let(:combo) { create(:combo) }
     let(:product) { create(:product) }

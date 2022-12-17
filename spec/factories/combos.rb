@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :combo do
+  factory :combo, class: "Combo::Record" do
     name { 'MyString' }
     description { 'Uma descricao' }
     price { 2 }
