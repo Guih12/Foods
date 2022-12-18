@@ -2,17 +2,14 @@ class CombosController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    authorize collection
     render json: ComboSerializer.new(collection).serialized_json, status: 200
   end
 
   def show
-    authorize combo
     render json: ComboSerializer.new(combo).serialized_json, status: 200
   end
 
   def create
-    authorize create_combo
     if !create_combo.errors.present?
       render json: ComboSerializer.new(create_combo).serialized_json, status: 201
     else
@@ -21,7 +18,6 @@ class CombosController < ApplicationController
   end
 
   def update
-    authorize update_combo
     if !update_combo.errors.present?
       render json: ComboSerializer.new(update_combo).serialized_json, status: 201
     else
@@ -32,19 +28,21 @@ class CombosController < ApplicationController
   private
 
   def create_combo
-    @create_combo = Combos::Create.new(attributes).persist
+    @create_combo = Combo::Create.new(attributes, Combo::Repository).persist
   end
 
   def update_combo
-    @update_combo = Combos::Update.new(combo, combos_attributes).persist
+    @update_combo = Combo::Update
+                          .new(combo_id: combo.id, combo_attribute: combos_attributes, repository: Combo::Repository)
+                          .persist
   end
 
   def collection
-    @collection ||= Combo.all
+    @collection ||= Combo::Record.all
   end
 
   def combo
-    @combo ||= Combo.find(params[:id])
+    @combo ||= Combo::Repository.find_by_id(combo_id: params[:id])
   end
 
   def attributes

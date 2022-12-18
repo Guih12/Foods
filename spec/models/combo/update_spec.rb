@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe Combos::Update do
-  subject { described_class.new(combo, **combo_attributes).persist }
+RSpec.describe Combo::Update do
+  subject { described_class.new(combo_id: combo.id, combo_attribute: combo_attributes, repository: Combo::Repository).persist }
   describe '.persist' do
     let(:combo) { create(:combo) }
     let(:product) { create(:product) }
@@ -9,8 +9,7 @@ RSpec.describe Combos::Update do
       {
         "name": 'combo_legal',
         "description": 'combo_nice',
-        "price": 10,
-        "combo_items_attributes": [{ "product_id": product.id }]
+        "price": 10
       }
     end
 

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe Combos::Create do
-  subject(:crate_combo) { Combos::Create.new(combo_attributes).persist }
+RSpec.describe Combo::Create do
+  subject(:crate_combo) { Combo::Create.new(combo_attributes, Combo::Repository).persist }
   let(:product) { create(:product) }
   let(:combo) { create(:combo) }
   let(:restaurant) { create(:restaurant) }
