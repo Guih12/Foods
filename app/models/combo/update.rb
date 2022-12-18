@@ -1,13 +1,13 @@
 module Combo
   class Update
-    def initialize(combo_id:, combo_attributes:, repository:)
+    def initialize(combo_id:, combo_attribute:, repository:)
       @combo_id            = combo_id
-      @combo_attributes    = combo_attributes
+      @combo_attribute    = combo_attribute
       @repository          = repository
     end
 
     def persist
-      @repository.update(combo_id: @combo_id, combo_params: @combo_attributes)
+      @repository.update(combo_id: @combo_id, combo_params: @combo_attribute)
     end
   end
 end

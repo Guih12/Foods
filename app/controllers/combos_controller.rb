@@ -33,7 +33,7 @@ class CombosController < ApplicationController
 
   def update_combo
     @update_combo = Combo::Update
-                          .new(combo_id: combo.id, combo_attributes: combos_attributes, repository: Combo::Repository)
+                          .new(combo_id: combo.id, combo_attribute: combos_attributes, repository: Combo::Repository)
                           .persist
   end
 
@@ -42,7 +42,7 @@ class CombosController < ApplicationController
   end
 
   def combo
-    @combo ||= Combo::Repository(combo_id: params[:id])
+    @combo ||= Combo::Repository.find_by_id(combo_id: params[:id])
   end
 
   def attributes

@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :combo_item do
+  factory :combo_item, class: "Combo::Item::Record" do
     combo { create(:combo) }
     product { create(:product) }
   end

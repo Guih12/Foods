@@ -54,8 +54,7 @@ RSpec.describe 'Combos', type: :request do
           "combo": {
             "name": combo.name,
             "description": combo.description,
-            "price": combo.price,
-            "combo_items_attributes": [{ "product_id": product.id }]
+            "price": combo.price
           }
         }
       end

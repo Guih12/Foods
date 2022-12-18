@@ -5,8 +5,7 @@ RSpec.describe ComboSerializer do
   let(:product) { create(:product) }
 
   before do
-    combo.combo_items_attributes = [{ product_id: product.id }]
-    combo.save
+    Combo::Item::Record.create(combo_id: combo.id, product_id: product.id)
   end
 
   describe '.serializable hash' do

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe ComboItem, type: :model do
+RSpec.describe Combo::Item::Record, type: :model do
   describe 'Validations' do
     context 'when valid attributes' do
       let(:combo_item) { create(:combo_item) }
