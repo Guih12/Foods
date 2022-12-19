@@ -1,10 +1,10 @@
 require 'rails_helper'
 
-RSpec.describe Products::Update do
+RSpec.describe Product::Update do
   describe '.persist' do
     context 'when valid attributes' do
       let(:product) { create(:product) }
-      let(:subject) { Products::Update.new(product, product_attributes) }
+      let(:subject) { Product::Update.new(product, product_attributes) }
       let(:product_attributes) do
         {
           name: 'hamburguer 2',
