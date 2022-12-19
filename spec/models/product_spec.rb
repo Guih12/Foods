@@ -36,7 +36,7 @@ RSpec.describe Product, type: :model do
   describe 'Scope' do 
     context 'when searching q ' do
       let(:product_one) { create(:product) }
-      let(:scope) { Product.q(product_one.name) }
+      let(:scope) { Product::Record.q(product_one.name) }
 
       it { expect(scope).to include(product_one) }
     end
