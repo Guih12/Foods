@@ -1,4 +1,4 @@
-module Products
+module Product
   class Update
     def initialize(product, product_attributes)
       @product = product

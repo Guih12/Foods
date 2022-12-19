@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :product do
+  factory :product, class: "Product::Record" do
     name { 'Lanche legal' }
     description { 'Um lanche muito bom' }
     type_product { :snack }

@@ -3,18 +3,15 @@ class ProductsController < ApplicationController
   has_scope :q
 
   def index
-    authorize collection
     render json: ProductSerializer.new(collection).serialized_json, status: 200
   end
 
   def show
-    authorize product
     render json: product, status: 200
   end
 
   def create
-    @new_product = Products::Create.new(attributes).persist
-    authorize @new_product
+    @new_product = Product::Create.new(attributes).persist
     if !@new_product.errors.present?
       render json: ProductSerializer.new(collection).serialized_json, status: 201
     else
@@ -23,8 +20,7 @@ class ProductsController < ApplicationController
   end
 
   def update
-    @update_product = Products::Update.new(product, product_attributes).persist
-    authorize @update_product
+    @update_product = Product::Update.new(product, product_attributes).persist
     if !@update_product.errors.present?
       render json: ProductSerializer.new(collection).serialized_json, status: 201
     else
@@ -39,11 +35,11 @@ class ProductsController < ApplicationController
   end
 
   def products
-    @products ||= ::Product.where(restaurant_id: current_user.restaurant.id)
+    @products ||= Product::Record.where(restaurant_id: current_user.restaurant.id)
   end
 
   def product
-    @product ||= Product.find(params[:id])
+    @product ||= Product::Record.find(params[:id])
   end
 
   def attributes

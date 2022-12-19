@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe Products::Create do
+RSpec.describe Product::Create do
   describe '.persist' do
     context 'when valid attributes' do
       let(:restaurant) { create(:restaurant) }
@@ -14,7 +14,7 @@ RSpec.describe Products::Create do
         }
       end
 
-      let(:subject) { Products::Create.new(product_params).persist }
+      let(:subject) { Product::Create.new(product_params).persist }
 
       it 'create product' do
         expect(subject).to eq subject
@@ -31,7 +31,7 @@ RSpec.describe Products::Create do
         }
       end
 
-      let(:subject) { Products::Create.new(product_params).persist }
+      let(:subject) { Product::Create.new(product_params).persist }
 
       it 'return message error' do
         expect(subject.messages).to have_key(:name)

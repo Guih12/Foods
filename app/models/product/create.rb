@@ -1,4 +1,4 @@
-module Products
+module Product
   class Create
     def initialize(product_attributes)
       @product_attributes = product_attributes
@@ -13,7 +13,7 @@ module Products
     attr_reader :product_attributes
 
     def create_product
-      product = ::Product.new(product_attributes)
+      product = Record.new(product_attributes)
       return product if product.save
 
       product.errors
