@@ -1,16 +1,9 @@
 module Combo
   module Repository
     extend self
-    def create(name:, description:, price:, combo_items_attributes:, restaurant_id:)
-      combo = Record.new(
-        name:                   name, 
-        description:            description, 
-        price:                  price, 
-        restaurant_id:          restaurant_id
-      )
-      
-      return combo if combo.save
-      combo.errors
+    def create(combo_params:)
+      combo = Record.create(combo_params)
+      [combo.persisted?, combo]
     end
 
     def update(combo_id:, combo_params:)
