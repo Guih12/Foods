@@ -8,13 +8,23 @@ module Combo
     end
 
     def persist
-      repository.create(
-        name: attributes[:name],
-        description: attributes[:description],
-        price: attributes[:price],
-        combo_items_attributes: attributes[:combo_items_attributes],
-        restaurant_id: attributes[:restaurant_id]
-      )
+      persisted, combo = repository.create(combo_params: params)
+      combo_item if persisted
+      combo
+    end
+
+    private
+
+    def params
+      Combo::Attributes::Create.call(attributes)
+    end
+
+    def combo_item(combo)
+      Combo::Item::Create.new(
+        combo_id: combo.id
+        params: attributes[:combo_item_attributes],
+        repository: Combo::Item::Repository
+      ).persist
     end
   end
 end

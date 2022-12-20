@@ -3,9 +3,12 @@ module Combo
     class Create
       private attr_accessor :params, :repository
 
-      def initialize(params:, repository:)
+      def initialize(combo_id: ,params:, repository:)
+        self.combo_id   = combo_id
         self.params     = params
         self.repository = repository
+
+        binding.pry
       end
 
       def persist
