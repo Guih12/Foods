@@ -3,7 +3,6 @@ module Consumers
     before_action :authenticate_user!
 
     def create
-      authorize PlaceOrder
       if !create_place_order.errors.present?
         render json: create_place_order, status: 201
       else
@@ -14,7 +13,7 @@ module Consumers
     private
 
     def create_place_order
-      PlaceOrders::Create.new(attributes).persist
+      PlaceOrder::Create.new(attributes, PlaceOrder::Repository).persist
     end
 
     def attributes
