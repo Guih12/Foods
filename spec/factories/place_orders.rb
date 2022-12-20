@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :place_order do
+  factory :place_order, class: "PlaceOrder::Record" do
     data { '2022-04-05' }
     status { false }
     price { 1.5 }

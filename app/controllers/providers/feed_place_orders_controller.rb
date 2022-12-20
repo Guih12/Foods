@@ -19,11 +19,11 @@ module Providers
     end
 
     def place_orders
-      @place_order ||= ::PlaceOrder.where(restaurant_id: current_user.restaurant.id)
+      @place_order ||= ::PlaceOrder::Record.where(restaurant_id: current_user.restaurant.id)
     end
 
     def feed_place_order
-      @place_order ||= ::PlaceOrder.find(params[:id])
+      @place_order ||= ::PlaceOrder::Record.find(params[:id])
     end
   end
 end
