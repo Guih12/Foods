@@ -1,7 +1,7 @@
 module Combo
   module Attributes
     extend self
-    Create = -> (params){
+    Create = -> (params) {
       {
         name: params[:name],
         description: params[:description],

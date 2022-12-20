@@ -9,7 +9,7 @@ module Combo
 
     def persist
       persisted, combo = repository.create(combo_params: params)
-      combo_item if persisted
+      combo_item(combo) if persisted
       combo
     end
 
@@ -21,8 +21,8 @@ module Combo
 
     def combo_item(combo)
       Combo::Item::Create.new(
-        combo_id: combo.id
-        params: attributes[:combo_item_attributes],
+        combo_id: combo.id,
+        params: attributes[:combo_items_attributes],
         repository: Combo::Item::Repository
       ).persist
     end

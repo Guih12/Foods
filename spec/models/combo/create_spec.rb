@@ -22,7 +22,7 @@ RSpec.describe Combo::Create do
 
     context 'when valid params' do
       it 'create combo' do
-        expect(subject).to eq subject
+        expect(subject).to eq Combo::Record.last
       end
     end
   end

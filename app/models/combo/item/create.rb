@@ -1,18 +1,16 @@
 module Combo
   module Item
     class Create
-      private attr_accessor :params, :repository
+      private attr_accessor :params, :repository, :combo_id
 
-      def initialize(combo_id: ,params:, repository:)
+      def initialize(combo_id:, params:, repository:)
         self.combo_id   = combo_id
         self.params     = params
         self.repository = repository
-
-        binding.pry
       end
 
       def persist
-        repository.create(combo_id: params[:combo_id], product_id: params[:product_id])
+        params&.each{ |param| repository.create(combo_id: combo_id, product_id: param[:product_id]) }
       end
     end
   end
