@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe PlaceOrders::CalculateDiscount do
+RSpec.describe PlaceOrder::CalculateDiscount do
   let(:place_order) { create(:place_order) }
   let(:product) { create(:product) }
   let(:product_two) { create(:product) }
@@ -9,7 +9,7 @@ RSpec.describe PlaceOrders::CalculateDiscount do
   let(:combo_two) { create(:combo) }
 
   describe '.verification_combo' do
-    let(:place_order_calculate_discount) { PlaceOrders::CalculateDiscount.new(place_order) }
+    let(:place_order_calculate_discount) { PlaceOrder::CalculateDiscount.new(place_order) }
 
     context 'when place order contains two combos' do
       before do
@@ -32,7 +32,7 @@ RSpec.describe PlaceOrders::CalculateDiscount do
   end
 
   describe '.verification_lanche equal 2' do
-    let(:place_order_calculate_discount) { PlaceOrders::CalculateDiscount.new(place_order) }
+    let(:place_order_calculate_discount) { PlaceOrder::CalculateDiscount.new(place_order) }
 
     context 'when place order contains two lanches' do
       before do
@@ -55,7 +55,7 @@ RSpec.describe PlaceOrders::CalculateDiscount do
   end
 
   describe '.verification_lanche_and_combo' do
-    let(:place_order_calculate_discount) { PlaceOrders::CalculateDiscount.new(place_order) }
+    let(:place_order_calculate_discount) { PlaceOrder::CalculateDiscount.new(place_order) }
 
     context 'when place order contains two combos and two lanches' do
       before do
@@ -81,7 +81,7 @@ RSpec.describe PlaceOrders::CalculateDiscount do
   end
 
   describe '.calculate_discount' do
-    let(:place_order_calculate_discount) { PlaceOrders::CalculateDiscount.new(place_order) }
+    let(:place_order_calculate_discount) { PlaceOrder::CalculateDiscount.new(place_order) }
 
     context 'when contains two combos and two lances' do
       before do

@@ -1,4 +1,4 @@
-module PlaceOrders
+module PlaceOrder
   class CalculateDiscount
     def initialize(place_order)
       @place_order = place_order
