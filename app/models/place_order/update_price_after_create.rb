@@ -1,4 +1,4 @@
-module PlaceOrders
+module PlaceOrder
   class UpdatePriceAfterCreate
     def initialize(place_order)
       @place_order = place_order
@@ -20,7 +20,7 @@ module PlaceOrders
     end
 
     def calculate_price
-      PlaceOrders::CalculatePrice.new(@place_order)
+      PlaceOrder::CalculatePrice.new(@place_order)
     end
   end
 end

@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe PlaceOrders::CalculatePrice do
+RSpec.describe PlaceOrder::CalculatePrice do
   let(:place_order) { create(:place_order) }
   let(:product) { create(:product) }
   let(:product_two) { create(:product) }
@@ -9,7 +9,7 @@ RSpec.describe PlaceOrders::CalculatePrice do
   let(:combo_two) { create(:combo) }
 
   describe '.calculate_total' do
-    let(:calculate_price) { PlaceOrders::CalculatePrice.new(place_order) }
+    let(:calculate_price) { PlaceOrder::CalculatePrice.new(place_order) }
     let(:total_combo) { place_order.combos.map(&:price).sum }
     let(:total_products) { place_order.products.map(&:price).sum.to_f }
     let(:price_total) { total_combo + total_products }
@@ -30,11 +30,11 @@ RSpec.describe PlaceOrders::CalculatePrice do
   end
 
   describe '.calculate_with_discount' do
-    let(:calculate_price) { PlaceOrders::CalculatePrice.new(place_order) }
+    let(:calculate_price) { PlaceOrder::CalculatePrice.new(place_order) }
     let(:total_combo) { place_order.combos.map(&:price).sum }
     let(:total_products) { place_order.products.map(&:price).sum.to_f }
     let(:price_total) { total_combo + total_products }
-    let(:calculate_discount) { PlaceOrders::CalculateDiscount.new(place_order).calculate_discount }
+    let(:calculate_discount) { PlaceOrder::CalculateDiscount.new(place_order).calculate_discount }
 
     let(:price_with_discount) { price_total - (price_total * calculate_discount) }
 

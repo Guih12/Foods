@@ -10,14 +10,16 @@ module PlaceOrder
 
     def persist
       persisted, place_order = repository.create_order(order_params: order_params)
-      combo_item(place_order) if persisted
+      combo_item(place_order)                if persisted
+      product_item(place_order)              if persisted
+      update_price_after_create(place_order) if persisted
       place_order
     end
 
     private
 
     def update_price_after_create(place_order)
-      PlaceOrders::UpdatePriceAfterCreate.new(place_order).update_price
+      PlaceOrder::UpdatePriceAfterCreate.new(place_order).update_price
     end
 
     def order_params
@@ -37,9 +39,12 @@ module PlaceOrder
       ).persist
     end
 
-    def product_item
-      NotImplementedError
+    def product_item(place_order)
+      Product::Item::Create.new(
+        place_order_id: place_order.id,
+        product_items_attributes: place_order_attributes[:place_order_product_items_attributes],
+        repository: PlaceOrder::Product::Item::Repository
+      ).persist
     end
-
   end
 end

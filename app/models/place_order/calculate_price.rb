@@ -1,4 +1,4 @@
-module PlaceOrders
+module PlaceOrder
   class CalculatePrice
     def initialize(place_order)
       @place_order = place_order
@@ -25,7 +25,7 @@ module PlaceOrders
     end
 
     def calculate_discount
-      PlaceOrders::CalculateDiscount.new(place_order).calculate_discount
+      PlaceOrder::CalculateDiscount.new(place_order).calculate_discount
     end
   end
 end
